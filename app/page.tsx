@@ -1,27 +1,17 @@
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
+import { IEvent } from "@/database/event.model";
 import React from "react";
 
-const events = [
-  {
-    image: "/event1.webp",
-    title: "AI & Machine Learning Summit 2026",
-    slug: "ai-ml-summit-2026",
-    location: "Bangalore, India",
-    date: "12-4-2026",
-    time: "April 12, 2026 • 9:00 AM - 5:30 PM"
-  },
-  {
-    image: "/event2.webp",
-    title: "Global DevOps Conference",
-    slug: "global-devops-conference",
-    location: "Hyderabad, India",
-    date: "12-4-2026",
-    time: "May 5, 2026 • 10:00 AM - 4:00 PM"
-  }
-]
 
-const page = () => {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+const page = async() => {
+
+  const response = await fetch(`${BASE_URL}/api/events`);
+
+  const { events } = await response.json();
+
   return (
     <>
       <div>
@@ -36,7 +26,7 @@ const page = () => {
           <h3>Featured Section</h3>
 
           <ul className="events">
-            {events.map((event)=>(
+            {events && events.length>0 && events.map((event : IEvent)=>(
               <li className="list-none" key={event.title}>
                 <EventCard {...event}/>
               </li>

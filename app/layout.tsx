@@ -31,13 +31,13 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
+        <div className="absolute inset-0 top-0 z-[-1] min-h-full">
           <LightRays
             raysOrigin="top-center-offset"
             raysColor="#00ffff"
             raysSpeed={1}
-            lightSpread={0.5}
-            rayLength={3}
+            lightSpread={0.4}
+            rayLength={2}
             followMouse={true}
             mouseInfluence={0.1}
             noiseAmount={0}
