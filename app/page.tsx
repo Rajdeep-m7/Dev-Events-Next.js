@@ -1,15 +1,16 @@
 import EventCard from "@/components/EventCard";
 import ExploreBtn from "@/components/ExploreBtn";
 import { IEvent } from "@/database/event.model";
+import { cacheLife } from "next/cache";
 import React from "react";
 
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 const page = async() => {
-
+  'use cache';
+  cacheLife('hours')
   const response = await fetch(`${BASE_URL}/api/events`);
-
   const { events } = await response.json();
 
   return (
@@ -23,7 +24,7 @@ const page = async() => {
         </p>
         <ExploreBtn/>
         <div className="mt-20 space-y-7">
-          <h3>Featured Section</h3>
+          <h3 id="events">Featured Section</h3>
 
           <ul className="events">
             {events && events.length>0 && events.map((event : IEvent)=>(

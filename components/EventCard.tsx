@@ -14,10 +14,10 @@ interface props {
   time: string;
 }
 
-const EventCard = ({ title, image, location, date, time }: props) => {
+const EventCard = ({ title, image, location,slug , date, time }: props) => {
   return (
     <div>
-      <Link href="events" id="event-card">
+      <Link href={`/events/${slug}`} id="event-card">
         <Image
           src={image}
           alt={title}

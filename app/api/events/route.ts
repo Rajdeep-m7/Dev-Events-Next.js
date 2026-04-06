@@ -61,3 +61,6 @@ export async function GET() {
     return NextResponse.json({ message: 'Failed to fetch events', error: error instanceof Error ? error.message : 'Unknown' }, { status: 500 });
   }
 }
+
+// a route that accepts a slug as input -> return the event details
+
